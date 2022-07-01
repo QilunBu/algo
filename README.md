@@ -59,6 +59,31 @@ public static void prongOddNum(int[] arr){
 
 
 2)
+public static void prongOddNum(int[] arr){
+        int eor = 0;
+        for (int i = 0; i <arr.length; i++) {
+            eor ^= arr[i];
+        }
+        //eor = a^b
+        //eor  != 0
+        //eor must have a "1" in position
+
+        //常规操作，一个数字 与 自己的取反加1， 得出这个数字位运算最右边的第一个不为零的数字。
+        int rightOne = eor & (~eor + 1); //~eor select the number definitly opposite to the origin number.  instance: eor:10110 ~eor:01001
+
+        int onlyOne = 0;
+        for (int i : arr) {
+            if ((i & rightOne) == 0){
+                onlyOne ^= i;
+            }
+        }
+        int result1 = onlyOne;
+        int result2 = eor ^ onlyOne;
+        System.out.println(result1 + result2);
+
+
+
+    }
 
 
 
